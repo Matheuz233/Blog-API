@@ -39,32 +39,129 @@ npm install
 ```bash
 npm run dev
 ```
-
 ## 📚 Endpoints
 
-### 👤 Usuários
+Abaixo estão listados todos os endpoints disponíveis na API, organizados por recurso. Cada endpoint inclui o método HTTP, a rota e exemplos de requisição e validação dos dados esperados.
 
-- `POST /users` — Criar usuário
-- `GET /users` — Listar usuários
-- `GET /users/:id` — Detalhar usuário
-- `PUT /users/:id` — Atualizar usuário
-- `DELETE /users/:id` — Remover usuário
-- `GET /users/:id/posts` — Listar postagens de um usuário
+## 👤 Usuários
 
-### 🏷️ Categorias
+* **`POST /users` — Criar usuário**
+  **Body:**
 
-- `POST /categories` — Criar categoria
-- `GET /categories` — Listar categorias
-- `PUT /categories/:id` — Atualizar categoria
-- `DELETE /categories/:id` — Remover categoria
+  ```json
+  {
+    "name": "Matheus",
+    "email": "teste@email.com",
+    "password": "123456"
+  }
+  ```
 
-### 📝 Postagens
+  **Validações:**
 
-- `POST /posts` — Criar postagem
-- `GET /posts` — Listar postagens
-- `GET /posts/:id` — Detalhar postagem
-- `PUT /posts/:id` — Atualizar postagem
-- `DELETE /posts/:id` — Remover postagem
+  * `name`: string não vazia.
+  * `email`: e-mail válido e não vazio.
+  * `password`: string não vazia.
+
+* **`GET /users` — Listar todos os usuários**
+
+* **`GET /users/:id` — Obter usuário específico**
+
+* **`PUT /users/:id` — Atualizar usuário**
+  **Body:** (todas as chaves opcionais)
+
+  ```json
+  {
+    "name": "Novo Nome",
+    "email": "novo@email.com",
+    "password": "novaSenha"
+  }
+  ```
+
+  **Validações:**
+
+  * `name`: string (opcional)
+  * `email`: e-mail válido (opcional)
+  * `password`: string (opcional)
+
+* **`DELETE /users/:id` — Deletar usuário**
+
+* **`GET /users/:id/posts` — Listar postagens de um usuário**
+
+---
+
+## 🏷️ Categorias
+
+* **`POST /categories` — Criar categoria**
+  **Body:**
+
+  ```json
+  {
+    "name": "Tecnologia"
+  }
+  ```
+
+  **Validação:** `name` deve ser string não vazia.
+
+* **`GET /categories` — Listar todas as categorias**
+
+* **`PUT /categories/:id` — Atualizar categoria**
+  **Body:**
+
+  ```json
+  {
+    "name": "Novo Nome da Categoria"
+  }
+  ```
+
+  **Validação:** `name` deve ser string não vazia.
+
+* **`DELETE /categories/:id` — Deletar categoria**
+
+---
+
+## 📝 Postagens
+
+* **`POST /posts` — Criar postagem**
+  **Body:**
+
+  ```json
+  {
+    "title": "Meu Primeiro Post",
+    "content": "Este é o conteúdo do meu primeiro post",
+    "userId": 1,
+    "categoryId": 1
+  }
+  ```
+
+  **Validações:**
+
+  * `title`: string não vazia
+  * `content`: string não vazia, até 255 caracteres
+  * `userId`: número válido
+  * `categoryId`: número válido
+
+* **`GET /posts` — Listar todas as postagens**
+
+* **`GET /posts/:id` — Obter postagem específica**
+
+* **`PUT /posts/:id` — Atualizar postagem**
+  **Body:** (todas as chaves opcionais)
+
+  ```json
+  {
+    "title": "Meu Primeiro Post Atualizado",
+    "content": "Este é o conteúdo atualizado",
+    "categoryId": 1
+  }
+  ```
+
+  **Validações:**
+
+  * `title`: string não vazia (opcional)
+  * `content`: string não vazia, até 255 caracteres (opcional)
+  * `categoryId`: número válido (opcional)
+
+* **`DELETE /posts/:id` — Deletar postagem**
 
 ## ✨ Funcionalidades Extras
 
